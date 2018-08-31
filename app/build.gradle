@@ -16,7 +16,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("keystore/credentials_sample")
+            storeFile file(releaseKeystoreFile)
             storePassword releaseKeystorePassword
             keyAlias releaseKeyAlias
             keyPassword releaseKeyPassword
