@@ -31,7 +31,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(getPassword("luissedano", "releaseKeystoreFile"))
+            storeFile file(getPassword("luissedano", "releaseKeystoreFile")) //BEHOLD! you should specify the ABSOLUTE path to the keystore file
             storePassword getPassword("luissedano", "releaseKeystorePassword")
             keyAlias getPassword("luissedano", "releaseKeyAlias")
             keyPassword getPassword("luissedano", "releaseKeyPassword")
