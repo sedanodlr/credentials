@@ -31,10 +31,10 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(getPassword("luissedano", "releaseKeystoreFile")) //BEHOLD! you should specify the ABSOLUTE path to the keystore file
-            storePassword getPassword("luissedano", "releaseKeystorePassword")
-            keyAlias getPassword("luissedano", "releaseKeyAlias")
-            keyPassword getPassword("luissedano", "releaseKeyPassword")
+            storeFile file(getPassword(System.getenv("USER"), "releaseKeystoreFile")) //BEHOLD! you should specify the ABSOLUTE path to the keystore file in the keychain
+            storePassword getPassword(System.getenv("USER"), "releaseKeystorePassword")
+            keyAlias getPassword(System.getenv("USER"), "releaseKeyAlias")
+            keyPassword getPassword(System.getenv("USER"), "releaseKeyPassword")
         }
     }
     buildTypes {
