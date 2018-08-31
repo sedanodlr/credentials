@@ -15,6 +15,6 @@ The branch organisation for the repo will be named like:
 
 - **better** : Credentials exposed as ENV variables. Keystore file fetched from another repository.
 
-- **actually_better** : Encrypted credentials stored in a local Vault-like storage system. Keystore file fetched from another repository.
+- **actually_better** : Encrypted credentials stored OS X Keychain. Keystore file fetched from another repository.
 
 - **optimal** : Usage of a ``configServer`` for the storage of the encrypted credentials. Keystore file fecthed from another repository.
