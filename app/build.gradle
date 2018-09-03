@@ -4,20 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-//reference article at https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/
+apply plugin: 'nu.studer.credentials'
 
-def getPassword(String currentUser, String keyChain) {
-    def stdout = new ByteArrayOutputStream()
-    def stderr = new ByteArrayOutputStream()
-    exec {
-        commandLine 'security', '-q', 'find-generic-password', '-a', currentUser, '-s', keyChain, '-w'
-        standardOutput = stdout
-        errorOutput = stderr
-        ignoreExitValue true
-    }
-    //noinspection GroovyAssignabilityCheck
-    stdout.toString().trim()
-}
+//reference https://github.com/etiennestuder/gradle-credentials-plugin
 
 android {
     compileSdkVersion 28
@@ -31,10 +20,10 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(getPassword(System.getenv("USER"), "releaseKeystoreFile")) //BEHOLD! you should specify the ABSOLUTE path to the keystore file in the keychain
-            storePassword getPassword(System.getenv("USER"), "releaseKeystorePassword")
-            keyAlias getPassword(System.getenv("USER"), "releaseKeyAlias")
-            keyPassword getPassword(System.getenv("USER"), "releaseKeyPassword")
+            storeFile file(String.valueOf(credentials.releaseKeystoreFile))
+            storePassword credentials.releaseKeystorePassword
+            keyAlias credentials.releaseKeyAlias
+            keyPassword credentials.releaseKeyPassword
         }
     }
     buildTypes {
